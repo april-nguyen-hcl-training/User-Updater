@@ -73,7 +73,7 @@ public class UserController {
 
     boolean validInput = true;
     /* Verify that
-     * user is not taken
+     * username (if changed) is not taken
      * username length >= 3 and username can only contain letters, numbers, @, -, $, and _
      * password longer than 8 char and contains a number and a letter
      * birthday is not greater than today & 18 <= age <= 130 (using birthday)
