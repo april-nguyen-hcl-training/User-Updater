@@ -43,10 +43,11 @@ public class UserDAO implements DAO<User> {
   }
 
   public User add(User user) {
-    Session session = this.sessionFactory.getCurrentSession();
-    session.beginTransaction();
+    Session session = this.sessionFactory.openSession();
+    Transaction transaction = session.beginTransaction();
     Long id = (Long)session.save(user);
-    session.getTransaction().commit();
+    transaction.commit();
+    session.close();
     User addedUser = get(id);
     logger.info("User added successfully, User Details: " + addedUser);
     return addedUser;
