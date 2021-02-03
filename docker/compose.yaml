@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  db:
+    build:
+      context: ../sql-scripts/
+      dockerfile: ../docker/mysql.dockerfile
+    image: db
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_HOST: db
+    ports:
+      - 3306:3306
+
+  tomcat:
+    depends_on:
+      - db
+    build:
+      context: ../user-updater/
+      dockerfile: ../docker/webapp.dockerfile
+    image: webapp
+    container_name: webapp
+    restart: always
+    ports:
+      - 8081:8080
