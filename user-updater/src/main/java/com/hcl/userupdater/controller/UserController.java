@@ -76,7 +76,7 @@ public class UserController {
      * username (if changed) is not taken
      * username length >= 3 and username can only contain letters, numbers, @, -, $, and _
      * password longer than 8 char and contains a number and a letter
-     * birthday is not greater than today & 18 <= age <= 130 (using birthday)
+     * 18 <= age <= 130 (using birthday)
      */
     if(!user.getUsername().equals(username) && userService.listUsers().stream().anyMatch(us -> us.getUsername().equals(username))) {
       model.addAttribute("usernameAlert", "Username is taken!");
